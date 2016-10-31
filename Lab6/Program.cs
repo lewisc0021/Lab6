@@ -15,26 +15,26 @@ namespace Lab6
             {
                 Console.WriteLine("Please enter a word to convert into Pig Latin");
                 string word = Console.ReadLine();
-                if (validateInput(word))
+                if (validateInput(word)) // guards against executing the pig latin translation for unacceptable user inputs
                 {
                     string pigword = TranslateToPigLatin(word);
                     Console.WriteLine(pigword);
                     Console.WriteLine("Do you wish to continue? (y/n)");
                     string answer = Console.ReadLine();
                     if (answer == "n" || answer == "N")
-                        break;
+                        break; //ends loop if user elects to quit
                 }
             }
         }
         static bool validateInput(string word)
         {
             char[] unexceptibleChars = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '!', '@', '#',
-            '$', '%', '^', '&', '*', '(', ')'};
+            '$', '%', '^', '&', '*', '(', ')','.',','}; // array for all "unacceptable" characters for the lab, if these are present, method returns false
             
             if (word.Trim() == "")
             {                
                 Console.WriteLine("Please actually enter an input.");
-                return false;
+                return false; //triggered if the user didn't enter any characters ie. spaces or tabs or nothing
             }
             else
             {
@@ -43,12 +43,12 @@ namespace Lab6
                     if (unexceptibleChars.Contains(letter) == true)
                     {
                         Console.WriteLine("You've included some numbers and/or alphanumeric symbols. Please try again.");
-                        return false;
+                        return false; //triggered if an "unacceptable" character is present
                     }
                 }
             }
             return true;
-        }
+        } //method to validate that the user entered an acceptable string
 
         static string TranslateToPigLatin(string word)
         {
@@ -85,6 +85,6 @@ namespace Lab6
                 word = word2 + word1 + "ay";
             }
             return word;
-        }
+        }// method to translate an acceptable user input to pig latin
     }
 }
